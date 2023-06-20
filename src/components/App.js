@@ -1,6 +1,14 @@
+import { useState } from 'react';
 import '../styles/App.scss';
 
 function App() {
+  
+  const [numberOfErrors, setNumberOfErrors] = useState(0);
+  const handleClick = (event) => {
+  setNumberOfErrors (numberOfErrors + 1);
+  console.log(numberOfErrors)
+  } 
+
   return (
     <div class="page">
     <header>
@@ -44,22 +52,24 @@ function App() {
             id="last-letter"
           />
         </form>
+        <button onClick={handleClick}>Incrementar</button>
       </section>
-      <section class="dummy error-5">
-        <span class="error-13 eye"></span>
-        <span class="error-12 eye"></span>
-        <span class="error-11 line"></span>
-        <span class="error-10 line"></span>
-        <span class="error-9 line"></span>
-        <span class="error-8 line"></span>
-        <span class="error-7 line"></span>
-        <span class="error-6 head"></span>
-        <span class="error-5 line"></span>
-        <span class="error-4 line"></span>
-        <span class="error-3 line"></span>
-        <span class="error-2 line"></span>
-        <span class="error-1 line"></span>
+      <section className={`dummy error-${numberOfErrors}`}>
+        <span className="error-13 eye"></span>
+        <span className="error-12 eye"></span>
+        <span className="error-11 line"></span>
+        <span className="error-10 line"></span>
+        <span className="error-9 line"></span>
+        <span className="error-8 line"></span>
+        <span className="error-7 line"></span>
+        <span className="error-6 head"></span>
+        <span className="error-5 line"></span>
+        <span className="error-4 line"></span>
+        <span className="error-3 line"></span>
+        <span className="error-2 line"></span>
+        <span className="error-1 line"></span>
       </section>
+
     </main>
   </div>
   );
