@@ -4,10 +4,22 @@ import '../styles/App.scss';
 function App() {
   
   const [numberOfErrors, setNumberOfErrors] = useState(0);
+  const [lastLetter, setLastLetter] = useState('');
+
   const handleClick = (event) => {
   setNumberOfErrors (numberOfErrors + 1);
   console.log(numberOfErrors)
   } 
+  const handleInputLetter = (event) => {
+    setLastLetter(event.target.value);
+    const letter = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','ñ','o','p','q','r','s','t','u','v','w','x','y','z'];
+    if(lastLetter.includes(letter)) {
+      
+
+    }else {
+      return 'letra incorrecta'
+    }
+  }
 
   return (
     <div class="page">
@@ -50,6 +62,8 @@ function App() {
             type="text"
             name="last-letter"
             id="last-letter"
+            onInput={handleInputLetter}
+            value={lastLetter}
           />
         </form>
         <button onClick={handleClick}>Incrementar</button>
