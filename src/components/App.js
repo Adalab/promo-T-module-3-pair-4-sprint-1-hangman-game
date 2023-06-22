@@ -5,6 +5,8 @@ function App() {
   
   const [numberOfErrors, setNumberOfErrors] = useState(0);
   const [lastLetter, setLastLetter] = useState('');
+  const [word, setWord] = useState('pepino');
+  const [userLetters, setUserLetters] = useState([]);
 
   const handleClick = (event) => {
   setNumberOfErrors (numberOfErrors + 1);
@@ -13,12 +15,19 @@ function App() {
   const handleInputLetter = (event) => {
     setLastLetter(event.target.value);
     const letter = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','ñ','o','p','q','r','s','t','u','v','w','x','y','z'];
-    if(lastLetter.includes(letter)) {
-      
-
+    if(letter.includes(event.target.value)) {
+      userLetters.push(event.target.value);
+      setUserLetters(userLetters);
     }else {
       return 'letra incorrecta'
     }
+  }
+
+  const renderSolutionLetters = () => {
+    const wordLetters = word.split('');
+    return wordLetters.map((eachWord) => {
+      return <li className='letter'>{eachWord}</li>
+    })
   }
 
   return (
@@ -30,17 +39,7 @@ function App() {
       <section>
         <div class="solution">
           <h2 class="title">Solución:</h2>
-          <ul class="letters">
-            <li class="letter">k</li>
-            <li class="letter">a</li>
-            <li class="letter"></li>
-            <li class="letter">a</li>
-            <li class="letter">k</li>
-            <li class="letter">r</li>
-            <li class="letter"></li>
-            <li class="letter">k</li>
-            <li class="letter">e</li>
-            <li class="letter">r</li>
+          <ul class="letters">{renderSolutionLetters()}
           </ul>
         </div>
         <div class="error">
