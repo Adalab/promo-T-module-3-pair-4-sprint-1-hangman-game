@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import '../styles/App.scss';
 
 function App() {
@@ -7,6 +7,7 @@ function App() {
   const [lastLetter, setLastLetter] = useState('');
   const [word, setWord] = useState('pepino');
   const [userLetters, setUserLetters] = useState([]);
+
 
   const handleClick = (event) => {
   setNumberOfErrors (numberOfErrors + 1);
@@ -26,37 +27,48 @@ function App() {
   const renderSolutionLetters = () => {
     const wordLetters = word.split('');
     return wordLetters.map((eachWord) => {
+      if(userLetters.includes(eachWord)){
       return <li className='letter'>{eachWord}</li>
+      }else {
+        return <li className='letter'></li>
+      }
+    })
+  }
+
+  const renderErrorLetters = ()=> {
+    const filteredLetters = userLetters.filter(oneLetter => !word.includes(oneLetter));
+    return filteredLetters.map((eachFilteredLetter) => {
+    return  <li className="letter">{eachFilteredLetter}</li>
     })
   }
 
   return (
-    <div class="page">
+    <div className="page">
     <header>
-      <h1 class="header__title">Juego del ahorcado</h1>
+      <h1 className="header__title">Juego del ahorcado</h1>
     </header>
-    <main class="main">
+    <main className="main">
       <section>
-        <div class="solution">
-          <h2 class="title">Solución:</h2>
-          <ul class="letters">{renderSolutionLetters()}
+        <div className="solution">
+          <h2 className="title">Solución:</h2>
+          <ul className="letters">{renderSolutionLetters()}
           </ul>
         </div>
-        <div class="error">
-          <h2 class="title">Letras falladas:</h2>
-          <ul class="letters">
-            <li class="letter">f</li>
-            <li class="letter">q</li>
-            <li class="letter">h</li>
-            <li class="letter">p</li>
-            <li class="letter">x</li>
+        <div clasNames="error">
+          <h2 className="title">Letras falladas:</h2>
+          <ul className="letters">{renderErrorLetters()}
+            <li className="letter">f</li>
+            <li className="letter">q</li>
+            <li className="letter">h</li>
+            <li className="letter">p</li>
+            <li className="letter">x</li>
           </ul>
         </div>
-        <form class="form">
-          <label class="title" for="last-letter">Escribe una letra:</label>
+        <form className="form">
+          <label className="title" for="last-letter">Escribe una letra:</label>
           <input
             autocomplete="off"
-            class="form__input"
+            className="form__input"
             maxlength="1"
             type="text"
             name="last-letter"
