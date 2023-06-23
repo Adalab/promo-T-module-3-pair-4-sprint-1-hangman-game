@@ -12,10 +12,10 @@ function App() {
   } 
   const handleInputLetter = (event) => {
     setLastLetter(event.target.value);
-    const letter = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','ñ','o','p','q','r','s','t','u','v','w','x','y','z'];
+   const letter = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','ñ','o','p','q','r','s','t','u','v','w','x','y','z'];
     
     if(lastLetter.includes(letter)) {
-      setLastLetter(lastLetter)
+      setLastLetter(lastLetter);
     }
       
 
